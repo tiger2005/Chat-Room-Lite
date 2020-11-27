@@ -4,6 +4,7 @@
 	<title>JS Chat Room</title>
 	<script src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="Client.css">
+	<link rel="stylesheet" href="all.min.css">
 </head>
 <body>
     <div class="interface">
@@ -13,7 +14,7 @@
 		</div>
 		<div class="Status Block">
 			<div class="Title">Status</div>
-			<pre class="Output"><span style="color: #e7483f;">Please enter a chat room</span></pre>
+			<pre class="Output"><span style="color: #e7483f;"><i class="fa fa-exclamation-circle" style="width:20px"></i>Please enter a chat room</span></pre>
 		</div>
 		<div class="UserInfo Block">
 			<div class="Title">User Info.</div>
@@ -30,7 +31,7 @@
 	<script>
 		var input=$('.Input');
 		input.on('keypress',K=>{
-			if(K.keyCode==13&&input.val()!==''){
+			if((K.keyCode==13||K.keyCode==10)&&input.val()!==''){
 				Send(input.val());
 				input.val('');
 			}
