@@ -335,3 +335,45 @@
 .fa-times:before {
   content: "\f00d";
 }
+.fa-align-left:before {
+  content: "\f036";
+}
+.fa-terminal:before {
+  content: "\f120";
+}
+.fa-comment:before {
+  content: "\f075";
+}
+.fa-user-secret:before {
+  content: "\f21b";
+}
+.fa-sign-in:before {
+  content: "\f090";
+}
+.fa-gears:before,
+.fa-cogs:before {
+  content: "\f085";
+}
+.fa-commenting:before {
+  content: "\f27a";
+}
+.fa-eye:before {
+  content: "\f06e";
+}
+.fa-eye-slash:before {
+  content: "\f070";
+}
+.fa-bookmark:before {
+  content: "\f02e";
+}
+.fa-globe:before {
+  content: "\f0ac";
+}
+.fa-send:before,
+.fa-paper-plane:before {
+  content: "\f1d8";
+}
+.fa-send-o:before,
+.fa-paper-plane-o:before {
+  content: "\f1d9";
+}

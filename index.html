@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
-	<title>JS Chat Room</title>
-	<script src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js"></script>
+	<title>Chat Room Lite</title>
+	<script src="jquery.min.js"></script>
+	<script src="showdown.min.js"></script>
+	<link rel="stylesheet" href="katex.min.css">
 	<link rel="stylesheet" href="Client.css">
 	<link rel="stylesheet" href="all.min.css">
+	<link rel="stylesheet" href="atelier-cave-dark.css">
 </head>
 <body>
     <div class="interface">
@@ -22,20 +25,43 @@
 		</div>
 		<div class="InputArea Block">
 			<div class="Title">Input Area</div>
-			<input type="text" class="Input">
+			<textarea class="Input" placeholder="Your Comment Here." style="resize:none"></textarea>
 		</div>
+		<span class="InputType"><i class="fas fa-terminal" id="InputT" onclick="changeInputType();" style="width:20px;cursor:pointer;"></i> <span id="InputTypeChooser">Single Line Mode - Enter to send message</span></span>
 	</div>
 </body>
 <footer>
 	<script src="Client.js"></script>
 	<script>
-		var input=$('.Input');
+		var input=$('.Input'),Doc=$(document);
+		var MultiplySelection=false;
 		input.on('keypress',K=>{
-			if((K.keyCode==13||K.keyCode==10)&&input.val()!==''){
-				Send(input.val());
-				input.val('');
+			if(MultiplySelection&&event.ctrlKey&&(K.keyCode==13 || K.keyCode==10)){
+				if(input.val()!=""){
+					Send(input.val());
+					input.val("");
+				}
+				return false;
+			}
+			if(!MultiplySelection&&!event.ctrlKey&&(K.keyCode==13 || K.keyCode==10)){
+				if(input.val()!=""){
+					Send(input.val());
+					input.val("");
+				}
+				return false;
 			}
 		});
+		Doc.on('keypress',K=>{
+			if(K.ctrlKey===true&&K.shiftKey===true&&K.keyCode===1)
+				changeInputType();
+		});
+		function changeInputType(){
+			MultiplySelection=!MultiplySelection;
+			document.getElementById("InputT").className=(MultiplySelection?"fas fa-align-left":"fas fa-terminal");
+			document.getElementById("InputTypeChooser").innerHTML=MultiplySelection?
+			"Multiple Line Mode - CTRL + Enter to send message":
+			"Single Line Mode - Enter to send message";
+		}
 	</script>
 </footer>
 </html>
